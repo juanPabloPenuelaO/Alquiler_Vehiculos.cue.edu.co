@@ -16,6 +16,7 @@ public class vehicles {
     private int modelYear;
     private String brand;
     private int priceDay;
+    private String plate;
     private String availability;
 
 }
