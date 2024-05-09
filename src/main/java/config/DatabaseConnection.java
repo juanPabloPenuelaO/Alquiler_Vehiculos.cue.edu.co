@@ -16,4 +16,9 @@ public class DatabaseConnection {
         }
         return connection;
     }
+
+    public static Connection getConnection() throws SQLException {
+        return getInstance().getConnection();
+    }
+
 }

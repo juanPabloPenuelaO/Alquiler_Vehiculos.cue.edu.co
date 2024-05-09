@@ -1,0 +1,27 @@
+@Dependent: significa que un objeto existe para servir exactamente a un
+cliente (bean) y tiene el mismo ciclo de vida que ese cliente (bean).
+
+@RequestScoped: La interacción de un usuario con una
+aplicación web en una única solicitud HTTP.
+
+@SessionScoped: La interacción de un usuario con una aplicación web
+a través de múltiples solicitudes HTTP.
+
+@ConversationScoped: La interacción de un usuario con un servlet,
+incluidas las aplicaciones Jakarta Faces. El alcance de la conversación
+existe dentro de límites controlados por el desarrollador que lo extienden
+ a través de múltiples solicitudes de conversaciones de larga duración.
+
+@ApplicationScoped: Estado compartido en todas las
+interacciones de los usuarios con una aplicación web.
+
+@Named: nos permite dar nombres a los beans y realizar la inyección.
+
+@Retention :Esta anotación sirve para asegurarnos que la
+información que nos provee la anotacion @Persistencia esta disponible en tiempo de ejecución.
+
+@Target: @Target nos indica en que lugares se puede aplicar esta anotación.
+
+@qualifier: es una anotación que se utiliza para resolver ambigüedades en la inyección de dependencias
+cuando hay múltiples implementaciones disponibles para un tipo concreto.
+

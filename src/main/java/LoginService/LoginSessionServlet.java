@@ -1,5 +1,6 @@
 package LoginService;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -68,5 +69,9 @@ public class LoginSessionServlet  extends LoginServiceSessionImpl{
         }
     } else {
         getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+    }
+
+    private ServletContext getServletContext() {
+        return null;
     }
 }
