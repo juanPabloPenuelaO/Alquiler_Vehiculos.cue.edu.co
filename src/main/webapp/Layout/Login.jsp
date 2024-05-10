@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Iniciar sesión</h1>
-<form action="/demoJakarta_war/login" method="post">
+<form action="/Alquiler_Vehiculos.cue.edu.co/login" method="post">
     <div>
         <label for="username">Username</label>
         <div>

@@ -1,4 +1,4 @@
-package filters;
+package utils;
 
 import Service.ServiceJDBCexception;
 import jakarta.servlet.*;
@@ -25,6 +25,7 @@ public class ConnectionFilter implements Filter {
                 conn.commit();
             } catch (SQLException | ServiceJDBCexception e) {
                 conn.rollback();
+
                 ((HttpServletResponse)response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                 e.printStackTrace();
             }

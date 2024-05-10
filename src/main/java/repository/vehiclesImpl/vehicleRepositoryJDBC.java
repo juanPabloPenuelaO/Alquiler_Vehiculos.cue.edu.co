@@ -1,6 +1,8 @@
 package repository.vehiclesImpl;
 
 import config.DatabaseConnection;
+import mapping.dtos.userDTO;
+import model.reservations;
 import model.vehicles;
 import repository.Repository;
 
@@ -10,9 +12,14 @@ import java.util.List;
 
 public class vehicleRepositoryJDBC implements Repository<vehicles> {
     private Connection getConnection() throws SQLException {
-        return DatabaseConnection.getInstance();
+        return (Connection) DatabaseConnection.getInstance();
     }
 
+
+    @Override
+    public void addUser(userDTO userDTO) {
+
+    }
 
     @Override
     public List<vehicles> list() {
@@ -75,6 +82,11 @@ public class vehicleRepositoryJDBC implements Repository<vehicles> {
     }
 
     @Override
+    public void update(reservations reservation) {
+
+    }
+
+   /* @Override
     public void update(vehicles vehicle) {
         try (PreparedStatement preparedStatement = getConnection()
                 .prepareStatement("UPDATE vehicles SET type = ?, model = ?, modelYear = ?, brand = ?, priceDay = ?, plate = ?, availability = ? WHERE id = ?")) {
@@ -90,7 +102,7 @@ public class vehicleRepositoryJDBC implements Repository<vehicles> {
             throw new RuntimeException("Error al actualizar vehiculo", e);
         }
     }
-
+*/
     private vehicles createVehicle(ResultSet resultSet) throws SQLException {
         vehicles vehicle = new vehicles();
         vehicle.setId(resultSet.getInt("id"));

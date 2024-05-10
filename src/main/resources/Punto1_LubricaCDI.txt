@@ -25,3 +25,6 @@ información que nos provee la anotacion @Persistencia esta disponible en tiempo
 @qualifier: es una anotación que se utiliza para resolver ambigüedades en la inyección de dependencias
 cuando hay múltiples implementaciones disponibles para un tipo concreto.
 
+@Application Scope:
+
+@request:

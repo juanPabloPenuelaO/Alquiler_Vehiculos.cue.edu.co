@@ -6,34 +6,36 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapping.dtos.VehicleDTO;
-import model.Vehicle;
-import services.impl.LoginSession.LoginServiceSession;
-import services.impl.LoginSession.LoginServiceSessionImpl;
-import services.impl.Vehicle.VehicleService;
-import services.impl.Vehicle.VehicleServiceImpl;
+import LoginService.LoginSessionServlet;
+import Service.userService;
+import Service.userServiceImpl;
+import model.user;
+import repository.Repository;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.List;
 import java.util.Optional;
 
-@WebServlet({"/vehicle", "/vehicle.html"})
-public class VehicleServlet extends HttpServlet {
+@WebServlet({"/user", "/user.html"})
+public class UserServlet extends HttpServlet {
 
     @Inject
-    LoginServiceSession auth;
+    LoginSessionServlet auth;
 
     @Inject
-    VehicleService vehicles;
+    userService users;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection conn = (Connection) req.getAttribute("conn");
 
-        Optional<String> usernameOptional = auth.getUserName(req);
+
+        Connection conn = (Connection) req.getAttribute("conn");
+        userService service = new userServiceImpl((Repository<user>) conn);
+
+        Optional<String> usernameOptional = auth.getUsername(req);
 
 
 
@@ -64,8 +66,8 @@ public class VehicleServlet extends HttpServlet {
                 out.println("<th>Agregar</th>");
             }
             out.println("</tr>");
-
-            vehicles.forEach(v -> {
+/*
+                users.list(v -> {
                 out.println("<tr>");
                 out.println("<td>" + v.getId() + "</td>");
                 out.println("<td>" + v.getName() + "</td>");
@@ -80,7 +82,7 @@ public class VehicleServlet extends HttpServlet {
                 out.println("</tr>");
             });
             out.println("</table>");
-
+*/
         }
     }
 }

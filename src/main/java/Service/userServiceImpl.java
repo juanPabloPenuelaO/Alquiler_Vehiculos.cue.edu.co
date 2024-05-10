@@ -7,18 +7,20 @@ import repository.Repository;
 
 import repository.userImpl.userRepositoryJDBC;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class userServiceImpl implements userService {
 
-    private Repository<user> userRepository;
+    private userRepositoryJDBC userRepository;
 
-    public void UserServiceImpl() {
-        this.userRepository = new userRepositoryJDBC();
+    public void UserServiceImpl(Connection connection) {
+        this.userRepository = new userRepositoryJDBC(connection);
     }
 
     public userServiceImpl(Repository<user> userRepository) {
-        this.userRepository = userRepository;
+        this.userRepository = (userRepositoryJDBC) userRepository;
     }
 
     @Override
@@ -28,14 +30,25 @@ public class userServiceImpl implements userService {
 
 
     @Override
-    public List<userDTO> list() {
-        return userRepository.list().stream().map(UserMapper::mapFromModel).toList();
+    public List<user> list() {
+        return userRepository.list();
     }
 
+    /*
+    @Override
+    public List<user> list() {
+        try{
+            return userRepository.list();
+        } catch (SQLException throwables){
+            throw new ServiceJDBCexception(throwables.getMessage(),
+                    throwables.getCause());
+        }
+    }
+*/
     @Override
     public userDTO byId(int id) {
         user user = userRepository.byId(id);
-        return UserMapper.mapFromModel(user);
+        return UserMapper.mapFrom(user user);
     }
 
     @Override

@@ -1,15 +1,16 @@
 package repository.loginImpl;
 
 import LoginService.LoginSessionServlet;
-import jakarta.servlet.ServletException;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Optional;
 
-public abstract class LoginServiceSessionImpl implements LoginSessionServlet {
+@ApplicationScoped
+
+public class LoginServiceSessionImpl implements LoginSessionServlet {
     @Override
     public Optional<String> getUsername(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -19,11 +20,5 @@ public abstract class LoginServiceSessionImpl implements LoginSessionServlet {
         }
         return Optional.empty();
     }
-
-    protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException;
-
-    protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp) throws
-            ServletException, IOException;
 }
 

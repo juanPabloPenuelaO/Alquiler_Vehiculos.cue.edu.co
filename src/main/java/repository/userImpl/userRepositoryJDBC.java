@@ -1,6 +1,8 @@
 package repository.userImpl;
 
 import config.DatabaseConnection;
+import mapping.dtos.userDTO;
+import model.reservations;
 import model.user;
 import repository.Repository;
 
@@ -8,15 +10,26 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static config.DatabaseConnection.getConnection;
+
 public class userRepositoryJDBC implements Repository<user> {
-    private Connection getConnection() throws SQLException {
-        return DatabaseConnection.getInstance();
+
+    private Connection conn;
+
+    public userRepositoryJDBC(Connection conn){
+        this.conn = conn;
+    }
+
+    @Override
+    public void addUser(userDTO userDTO) {
+
     }
 
     @Override
     public List<user> list() {
         List<user> users = new ArrayList<>();
-        try (Statement statement = getConnection().createStatement();
+
+        try (Statement statement = conn.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM users")) {
             while (resultSet.next()) {
                 user user = createUser(resultSet);
@@ -71,17 +84,8 @@ public class userRepositoryJDBC implements Repository<user> {
     }
 
     @Override
-    public void update(user User) {
-        try (PreparedStatement preparedStatement = getConnection()
-                .prepareStatement("UPDATE users SET name = ?, lastName = ?, phoneNumber = ?, password = ? WHERE id = ?")) {
-            preparedStatement.setString(1, User.getName());
-            preparedStatement.setString(2, User.getLastName());
-            preparedStatement.setInt(3, User.getPhoneNumber());
-            preparedStatement.setString(4, User.getPassword());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al actualizar cliente", e);
-        }
+    public void update(reservations reservation) {
+
     }
 
     private user createUser(ResultSet resultSet) throws SQLException {

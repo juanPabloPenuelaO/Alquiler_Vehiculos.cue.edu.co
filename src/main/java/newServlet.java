@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mapping.dtos.userDTO;
+import model.reservations;
 import model.user;
 import repository.Repository;
 
@@ -66,6 +67,11 @@ public class newServlet extends HttpServlet implements Repository<userDTO> {
 
     @Override
     public void delete(int id) {
+
+    }
+
+    @Override
+    public void update(reservations reservation) {
 
     }
 }

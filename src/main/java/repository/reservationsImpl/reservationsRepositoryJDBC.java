@@ -1,19 +1,24 @@
 package repository.reservationsImpl;
 
 import config.DatabaseConnection;
+import mapping.dtos.userDTO;
 import model.reservations;
 import repository.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 public class reservationsRepositoryJDBC implements Repository<reservations> {
     private Connection getConnection() throws SQLException {
-        return DatabaseConnection.getInstance();
+        return (Connection) DatabaseConnection.getInstance();
     }
 
+
+    @Override
+    public void addUser(userDTO userDTO) {
+
+    }
 
     @Override
     public List<reservations> list() {
@@ -76,7 +81,8 @@ public class reservationsRepositoryJDBC implements Repository<reservations> {
     @Override
     public void update(reservations reservation) {
         try (PreparedStatement preparedStatement = getConnection()
-                .prepareStatement("UPDATE reservations SET start_Date = ?, end_Date = ?, idVehicle = ?, idUser = ?, status = ? WHERE id = ?")) {
+                .prepareStatement("UPDATE reservations SET start_Date = ?, end_Date = ?, idVehicle = ?," +
+                        " idUser = ?, status = ? WHERE id = ?")) {
             preparedStatement.setDate(1, new java.sql.Date(reservation.getStart_Date().getTime()));
             preparedStatement.setDate(2, new java.sql.Date(reservation.getEnd_Date().getTime()));
             preparedStatement.setInt(3, reservation.getIdVehicle());

@@ -15,9 +15,15 @@ import java.util.Optional;
 
 import static java.lang.System.out;
 
-public class LoginSessionServlet  extends LoginServiceSessionImpl{
-    final static String USERNAME = "admin";
+public interface LoginSessionServlet {
+
+    Optional<String> getUsername(HttpServletRequest request);
+
+    /*final static String USERNAME = "admin";
     final static String PASSWORD = "12345";
+
+    public abstract Optional<String> getUsername(HttpServletRequest request);
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -74,4 +80,6 @@ public class LoginSessionServlet  extends LoginServiceSessionImpl{
     private ServletContext getServletContext() {
         return null;
     }
+
+     */
 }
