@@ -25,7 +25,7 @@ public class userServiceImpl implements userService {
 
     @Override
     public void addUser(userDTO userDTO) {
-        userRepository.save(UserMapper.mapFromDTO(userDTO));
+        userRepository.save(UserMapper.mapFrom(userDTO));
     }
 
 
@@ -48,12 +48,12 @@ public class userServiceImpl implements userService {
     @Override
     public userDTO byId(int id) {
         user user = userRepository.byId(id);
-        return UserMapper.mapFrom(user user);
+        return UserMapper.mapFrom(user);
     }
 
     @Override
     public void save(userDTO user) {
-        userRepository.save(UserMapper.mapFromDTO(user));
+        userRepository.save(UserMapper.mapFrom(user));
     }
 
 
