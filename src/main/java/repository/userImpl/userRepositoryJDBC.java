@@ -88,6 +88,7 @@ public class userRepositoryJDBC implements Repository<user> {
 
     }
 
+
     private user createUser(ResultSet resultSet) throws SQLException {
         user User = new user();
         User.setId(resultSet.getInt("id"));

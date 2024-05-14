@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class vehicleRepositoryJDBC implements Repository<vehicles> {
+    public vehicleRepositoryJDBC(Connection connection) {
+    }
+
     private Connection getConnection() throws SQLException {
         return (Connection) DatabaseConnection.getInstance();
     }
@@ -23,17 +26,17 @@ public class vehicleRepositoryJDBC implements Repository<vehicles> {
 
     @Override
     public List<vehicles> list() {
-        List<vehicles> users = new ArrayList<>();
+        List<vehicles> vehicles = new ArrayList<>();
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM vehicles")) {
             while (resultSet.next()) {
                 vehicles vehicle = createVehicle(resultSet);
-                users.add(vehicle);
+                vehicles.add(vehicle);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al listar clientes", e);
         }
-        return users;
+        return vehicles;
     }
 
     @Override

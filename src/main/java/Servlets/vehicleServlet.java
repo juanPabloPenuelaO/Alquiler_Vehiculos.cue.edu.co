@@ -7,25 +7,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import LoginService.LoginSessionServlet;
-import Service.userService;
-import Service.userServiceImpl;
-import model.user;
-import repository.Repository;
+import Service.vehicleService;
 
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.Optional;
 
-@WebServlet({"/user", "/user.html"})
-public class UserServlet extends HttpServlet {
+@WebServlet({"/vehicles", "/vehicle.html"})
+public class vehicleServlet extends HttpServlet {
 
     @Inject
     LoginSessionServlet auth;
 
     @Inject
-    userService users;
+    vehicleService vehicles;
 
 
     @Override
@@ -41,10 +37,10 @@ public class UserServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<meta charset=\"UTF-8\">");
-            out.println("<title>Listado de Usuarios</title>");
+            out.println("<title>Listado de vehiculos</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Listado de Usuarios!</h1>");
+            out.println("<h1>Listado de vehiculos!</h1>");
 
             if (usernameOptional.isPresent()) {
                 out.println("<p> Hola " + usernameOptional.get() + " Bienvenido! </p>");
@@ -53,25 +49,30 @@ public class UserServlet extends HttpServlet {
             out.println("<table>");
             out.println("<tr>");
             out.println("<th>id</th>");
-            out.println("<th>nombre</th>");
-            out.println("<th>apellido</th>");
+            out.println("<th>tipo de Vehiculo</th>");
+            out.println("<th>modelo</th>");
+            out.println("<th>año del modelo</th>");
+            out.println("<th>marca</th>");
+            out.println("<th>precio Por día</th>");
 
             if (usernameOptional.isPresent()) {
-                out.println("<th>Numero Telefonico</th>");
-                out.println("<th>contraseña</th>");
+                out.println("<th>Placa</th>");
+                out.println("<th>Disponibilidad</th>");
             }
 
             out.println("</tr>");
 
-            users.list().forEach(user -> {
+            vehicles.list().forEach(vehicles -> {
                 out.println("<tr>");
-                out.println("<td>" + user.getId() + "</td>");
-                out.println("<td>" + user.getName() + "</td>");
-                out.println("<td>" + user.getLastName() + "</td>");
+                out.println("<td>" + vehicles.getId() + "</td>");
+                out.println("<td>" + vehicles.getType() + "</td>");
+                out.println("<td>" + vehicles.getModelYear() + "</td>");
+                out.println("<td>" + vehicles.getBrand() + "</td>");
+                out.println("<td>" + vehicles.getPriceDay() + "</td>");
 
                 if (usernameOptional.isPresent()) {
-                    out.println("<td>" + user.getPhoneNumber() + "</td>");
-                    out.println("<td>" + user.getPassword() + "</td>");
+                    out.println("<td>" + vehicles.getPlate() + "</td>");
+                    out.println("<td>" + vehicles.getAvailability() + "</td>");
                 }
 
                 out.println("</tr>");
