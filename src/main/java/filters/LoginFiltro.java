@@ -10,7 +10,7 @@ import LoginService.LoginSessionServlet;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebFilter({"/users", "/*"})//urls que deseamos aplique el filtro
+@WebFilter({"/login"})//urls que deseamos aplique el filtro
 //si queremos implementar varias pondriamos:
 //@WebFilter({"/user", “/vehicles”,”reservations”})
 

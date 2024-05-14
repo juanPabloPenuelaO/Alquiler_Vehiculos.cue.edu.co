@@ -1,5 +1,6 @@
 package Service;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import mapping.dtos.vehiclesDTO;
 import mapping.mappers.VehicleMapper;
 import model.vehicles;
@@ -10,8 +11,10 @@ import repository.vehiclesImpl.vehicleRepositoryJDBC;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
+@ApplicationScoped
 public class vehicleServiceImpl implements vehicleService {
+    public vehicleServiceImpl() {
+    }
 
     private vehicleRepositoryJDBC vehicleRepository;
 

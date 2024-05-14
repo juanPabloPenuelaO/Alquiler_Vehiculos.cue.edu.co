@@ -19,12 +19,13 @@ import java.util.Optional;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
-    @Inject LoginServiceSession auth;
+    @Inject
+    LoginServiceSession auth;
+
+    @Inject
+    private userService userService;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Connection conn = (Connection) req.getAttribute("conn");
-        userService service = new userServiceImpl((Repository<user>) conn);
 
         Optional<String> username = auth.getUserName(req);
         if(username.isPresent()) {

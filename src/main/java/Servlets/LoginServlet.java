@@ -23,16 +23,20 @@ import java.util.Optional;
 public class LoginServlet extends HttpServlet {
     final static String USERNAME = "admin";
     final static String PASSWORD = "12345";
+
+    @Inject
+    private userService userService;
+
     @Inject
     LoginSessionServlet auth;
 
-
+    @Inject
+    Repository<user> userRepository;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Connection conn = (Connection) req.getAttribute("conn");
-        userService service = new userServiceImpl((Repository<user>) conn);
         Optional<String> usernameOptional = auth.getUsername(req);
 
         if (usernameOptional.isPresent()) {

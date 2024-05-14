@@ -1,6 +1,9 @@
 package repository.userImpl;
 
+import annotations.MysqlConn;
 import config.DatabaseConnection;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import mapping.dtos.userDTO;
 import model.reservations;
 import model.user;
@@ -11,14 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static config.DatabaseConnection.getConnection;
-
+@ApplicationScoped
 public class userRepositoryJDBC implements Repository<user> {
 
+    @Inject
+    @MysqlConn
     private Connection conn;
-
-    public userRepositoryJDBC(Connection conn){
-        this.conn = conn;
-    }
 
     @Override
     public void addUser(userDTO userDTO) {

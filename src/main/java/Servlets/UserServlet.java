@@ -25,7 +25,7 @@ public class UserServlet extends HttpServlet {
     LoginSessionServlet auth;
 
     @Inject
-    userService users;
+    userServiceImpl users;
 
 
     @Override

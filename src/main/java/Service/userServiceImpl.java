@@ -1,5 +1,7 @@
 package Service;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import mapping.dtos.userDTO;
 import mapping.mappers.UserMapper;
 import model.user;
@@ -11,17 +13,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+@ApplicationScoped
 public class userServiceImpl implements userService {
 
+    @Inject
     private userRepositoryJDBC userRepository;
-
-    public void UserServiceImpl(Connection connection) {
-        this.userRepository = new userRepositoryJDBC(connection);
-    }
-
-    public userServiceImpl(Repository<user> userRepository) {
-        this.userRepository = (userRepositoryJDBC) userRepository;
-    }
 
     @Override
     public void addUser(userDTO userDTO) {
